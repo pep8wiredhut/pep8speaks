@@ -67,7 +67,7 @@ def match_webhook_secret(request):
         if sha_name != 'sha1':
             abort(501)
 
-        mac = hmac.new(os.environ["GITHUB_PAYLOAD_SECRET"].encode(),
+        mac = hmac.new(os.environ["PAYLOAD_SECRET"].encode(),
                        msg=request.data,
                        digestmod="sha1")
 

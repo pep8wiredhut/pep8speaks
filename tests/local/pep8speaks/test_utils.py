@@ -79,9 +79,9 @@ class TestUtils:
         }
         request_ctx.data = data.encode()
 
-        monkeypatch.setenv('GITHUB_PAYLOAD_SECRET', 'wrongkey')
+        monkeypatch.setenv('PAYLOAD_SECRET', 'wrongkey')
         with pytest.raises(werkzeug.exceptions.Forbidden):
             match_webhook_secret(request_ctx)
 
-        monkeypatch.setenv('GITHUB_PAYLOAD_SECRET', key)
+        monkeypatch.setenv('PAYLOAD_SECRET', key)
         assert match_webhook_secret(request_ctx) is True
